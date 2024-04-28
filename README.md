@@ -1,48 +1,40 @@
 # clock24
 
-24-hour xclock
+24-hour clock in Clojure using Quil / Processing
 
 ## Installation
 
-not on github yet
+Tested only on Linux and Mac.
 
-# Download from http://example.com/FIXME.
+You need the Java JDK.  On Ubuntu 23.04 I did this:
+
+```
+$ sudo apt install openjdk-21-jdk
+$ java -version
+openjdk version "21.0.2" 2024-01-16
+OpenJDK Runtime Environment (build 21.0.2+13-Ubuntu-122.04.1)
+OpenJDK 64-Bit Server VM (build 21.0.2+13-Ubuntu-122.04.1, mixed mode, sharing)
+```
+
+Then download the "lein" script from `leiningen.org`, and run it; it
+will self-install.
 
 ## Usage
 
-just run it
+Just run it with Leiningen:
 
-    $ java -jar clock24-0.1.0-standalone.jar [args]
+```
+$ lein run
+```
+
+If you build an uberjar with `lein uberjar` then you can run that
+wherever, with:
+
+```
+$ java -jar clock24-0.1.0-standalone.jar
+```
 
 ## Options
 
-FIXME: listing of options this app accepts.
-
 [no options yet]
 
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2024 FIXME
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
