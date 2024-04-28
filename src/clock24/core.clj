@@ -35,40 +35,43 @@
    (* r (q/sin theta))])
 
 (defn tic [r1 r2 theta]
-  (let [x1 (* r1 (q/cos theta))
-        y1 (* r1 (q/sin theta))
-        x2 (* r2 (q/cos theta))
-        y2 (* r2 (q/sin theta))]
+  (let [[x1 y1] (xy-from-polar r1 theta)
+        [x2 y2] (xy-from-polar r2 theta)]
     (q/line x1 y1 x2 y2)))
 
 (defn draw-state [state]
   (q/frame-rate 1)
-  ; (q/window-move (- (q/display-width) 150) 84)
 
   (q/background 255)
   (let [radius (* 0.9 (/ (q/width) 2))
-          hand (* 0.9 radius)]
+        hand (* 0.9 radius)]
+    (doseq [m (range 12)]
+      (q/stroke-weight 1)
+      (q/stroke 0 0 0)
+      (let [x (* m (/ (q/width) 12))]
+        (q/line
+          x (q/height)
+          x (* 0.95 (q/height)))))
     (q/with-translation [(/ (q/width) 2)
                          (/ (q/height) 2)]
-      (q/stroke 0 0 0)
       (q/stroke-weight 2)
-      #_ (q/ellipse 0 0 (* 2 radius) (* 2 radius))
+      (q/stroke 0 0 0)
+      (q/fill 0 0 0)
       (doseq [h (range 12)]
         (let [even_hour_angle (* twohour h)
               odd_hour_angle (+ hour even_hour_angle)]
           (tic (* radius 0.9) radius even_hour_angle)
-          (tic (* radius 0.95) radius odd_hour_angle)
-          #_(tic (* radius 0.975) radius (+ halfhour odd_hour_angle))
-          #_(tic (* radius 0.975) radius (+ halfhour even_hour_angle))))
+          (tic (* radius 0.95) radius odd_hour_angle)))
       (q/stroke-weight 3)
       (q/stroke 230 0 0)
       (tic 0 hand (:angle state))
-      (q/fill 230 0 0)
       (let [[x y] (xy-from-polar radius (:second state))]
-        (q/ellipse x y 5 5))
-      )
-    (q/stroke 0 0 0)
+        (q/stroke nil)
+        (q/fill 230 0 0)
+        (q/ellipse x y 5 5)))
     (q/stroke-weight 2)
+    (q/stroke 0 0 0)
+    (q/fill 0 0 0)
     (let [minute_position (* (q/height) (:minute_frac state))]
       (q/line minute_position 0 minute_position (q/height)))))
 
