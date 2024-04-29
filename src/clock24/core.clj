@@ -24,10 +24,8 @@
    (* r (q/sin theta))])
 
 (defn tic [r1 r2 theta]
-  (let [x1 (* r1 (q/cos theta))
-        y1 (* r1 (q/sin theta))
-        x2 (* r2 (q/cos theta))
-        y2 (* r2 (q/sin theta))]
+  (let [[x1 y1] (xy-from-polar r1 theta)
+        [x2 y2] (xy-from-polar r2 theta)]
     (q/line x1 y1 x2 y2)))
 
 (defn update-state [state]
