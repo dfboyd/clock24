@@ -4,7 +4,7 @@
 
 ## Installation
 
-Tested only on Linux and Mac.
+Tested on Linux, Mac and Windows.
 
 You need the Java JDK.  On Ubuntu 23.04 I did this:
 
